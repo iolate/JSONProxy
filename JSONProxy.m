@@ -49,3 +49,25 @@
 }
 
 @end
+
+@implementation NSData (JSONProxy)
+
+- (id)parseJSON
+{
+    __autoreleasing NSError* error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:self options:kNilOptions error:&error];
+    if (error != nil) return nil;
+    return result;
+}
+
+@end
+
+@implementation NSString (JSONProxy)
+
+- (id)parseJSON
+{
+    NSData* data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data parseJSON];
+}
+
+@end

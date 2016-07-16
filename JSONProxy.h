@@ -15,3 +15,11 @@
 + (NSArray *)arrayWithContentsOfJSONURLString:(NSString *)urlAddress;
 - (NSData *)toJSON;
 @end
+
+@interface NSData (JSONProxy)
+- (id)parseJSON;
+@end
+
+@interface NSString (JSONProxy)
+- (id)parseJSON;
+@end
